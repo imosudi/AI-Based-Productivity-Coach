@@ -11,25 +11,14 @@ from . import dir_path
 
 # Define how each category maps to a broader type
 CATEGORY_TYPE_MAP = {
-    'Deep Work':                   'focus',
-    'Creative Session':           'focus',
-    'Learning & Development':     'focus',
+    'Deep Work':                   'focus', 'Creative Session':           'focus', 'Learning & Development':     'focus',
 
-    'Break':                      'break',
-    'Lunch':                      'break',
-    'Short Break':                'break',
+    'Break':                      'break',  'Lunch':                      'break', 'Short Break':                'break',
 
-    'Admin':                      'other',
-    'Shallow Work':               'other',
-    'Collaboration':              'other',
-    'Planning & Strategy':        'other',
-    'Meetings (1-on-1)':          'other',
-    'Documentation':              'other',
-    'Support & Maintenance':      'other',
-    'Client Engagement':          'other',
-    'Team Management':            'other',
-    'Errands & Admin (Personal)': 'other',
-    'Reflection & Review':        'other'
+    'Admin':                      'other',  'Shallow Work':               'other',  'Collaboration':              'other',
+    'Planning & Strategy':        'other',  'Meetings (1-on-1)':          'other',  'Documentation':              'other',
+    'Support & Maintenance':      'other',  'Client Engagement':          'other',  'Team Management':            'other',
+    'Errands & Admin (Personal)': 'other',  'Reflection & Review':        'other'
 }
 
 
