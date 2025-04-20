@@ -1,5 +1,9 @@
+
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')  # Use a non-GUI backend
 import matplotlib.pyplot as plt
+
 import os
 from datetime import timedelta, datetime
 
@@ -7,15 +11,27 @@ from . import dir_path
 
 # Define how each category maps to a broader type
 CATEGORY_TYPE_MAP = {
-    'Deep Work':       'focus',
-    'Creative Session':'focus',     # new focus category
-    'Admin':           'other',
-    'Collaboration':   'other',
-    'Shallow Work':    'other',
-    'Break':           'break',
-    'Lunch':           'break',     # treat lunch as a break
-    'Short Break':     'break'      # etc.
+    'Deep Work':                   'focus',
+    'Creative Session':           'focus',
+    'Learning & Development':     'focus',
+
+    'Break':                      'break',
+    'Lunch':                      'break',
+    'Short Break':                'break',
+
+    'Admin':                      'other',
+    'Shallow Work':               'other',
+    'Collaboration':              'other',
+    'Planning & Strategy':        'other',
+    'Meetings (1-on-1)':          'other',
+    'Documentation':              'other',
+    'Support & Maintenance':      'other',
+    'Client Engagement':          'other',
+    'Team Management':            'other',
+    'Errands & Admin (Personal)': 'other',
+    'Reflection & Review':        'other'
 }
+
 
 def compute_productivity_stats(df):
     # Map each row to its type
