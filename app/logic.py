@@ -330,10 +330,10 @@ class taskManipulations(object):
 
 class podomoroTechnique(object):
     def __init__(self, tasks, categories, start_times, end_times, energy, pomodoro_settings, *args):
-        self.tasks              = tasks 
+        self.tasks           = tasks 
         self.categories         = categories
-        self.start_times        = start_times
-        self.end_times          = end_times 
+        self.start_times         = start_times
+        self.end_times           = end_times 
         self.energy             = energy
         self.pomodoro_settings  = pomodoro_settings
         super(podomoroTechnique, self).__init__(*args)
