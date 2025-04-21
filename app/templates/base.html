@@ -105,9 +105,34 @@
 
     <div class="container">
 
-        <h1 class="text-center mb-4" data-aos="fade-down">
-            {% include 'include/icon.html' %} AI Productivity - {% block page_header %}{% endblock %}
-        </h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4" data-aos="fade-down">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    {% include 'include/icon.html' %}
+                    AI Productivity - {% block page_header %}{% endblock %}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="fw-bolder nav-link" href="{{ url_for('index') }}">
+                                <i class="bi bi-house-door-fill"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="fw-bolder nav-link" href="{{ url_for('tasks') }}">
+                                <i class="bi bi-card-checklist"></i> Tasks
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
         {% block content %}
         {% endblock %}
     </div>

@@ -106,10 +106,13 @@ The AI-Based Productivity Coach is a Flask-based web application that helps user
 
 ## 📸 Screenshots
 
-| Dashboard | Analytics |
+| Home Page |  |
 |----------|-----------|
-| ![dashboard](screenshots/dashboard.png) | ![analytics](screenshots/analytics.png) |
-
+| ![Home page](screenshots/homepage.png)|
+| Dashboard |  |
+| ![dashboard](screenshots/dashboard.png) |
+| Pomodo Schedule |  |
+| ![Pomodo Schedule](screenshots/pomodo_schedule.png) |
 
 ## Directory and File Descriptions
 
