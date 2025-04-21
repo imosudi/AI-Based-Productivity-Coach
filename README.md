@@ -1,7 +1,13 @@
-# AI-Based Productivity Coach
-<div align="justify">
-This web-based productivity dashboard is designed to help individuals, students, and professionals organise their tasks, manage their time, and track their daily activities with enhanced efficiency. Built using Flask, HTML, CSS, and JavaScript, the application integrates smart scheduling tools and visual progress indicators to provide users with an intuitive and interactive experience. It supports dynamic task updates, categorisation, and daily summaries, empowering users to prioritise their goals and stay focused. By incorporating productivity techniques like the Pomodoro method and intelligent task batching, the application fosters a well-structured approach to time management. Whether you're working on personal goals or managing multiple professional commitments, this dashboard is tailored to improve productivity, ensure optimal use of time, and support a balanced workflow.
+# 🧠  AI-Based Productivity Coach
+A dynamic, intelligent task and time management tool designed to optimise productivity using real-time analytics, visual progress feedback, and cognitive-friendly scheduling.
+
+---
+
+## 🚀 Overview
+
+The AI-Based Productivity Coach is a Flask-based web application that helps users manage their tasks, visualise progress, and improve focus through features like Pomodoro recommendations and cognitive load balancing. Built for individuals and teams who want to make the most out of their time, this tool intelligently analyses user inputs and adapts daily workflows dynamically. This web-based productivity dashboard is designed to help individuals, students, and professionals organise their tasks, manage their time, and track their daily activities with enhanced efficiency. Built using Flask, HTML, CSS, and JavaScript, the application integrates smart scheduling tools and visual progress indicators to provide users with an intuitive and interactive experience. It supports dynamic task updates, categorisation, and daily summaries, empowering users to prioritise their goals and stay focused. By incorporating productivity techniques like the Pomodoro method and intelligent task batching, the application fosters a well-structured approach to time management. Whether you're working on personal goals or managing multiple professional commitments, this dashboard is tailored to improve productivity, ensure optimal use of time, and support a balanced workflow.
 </div>
+---
 
 ## Table of Contents
 - [Features](#features)
@@ -17,27 +23,56 @@ This web-based productivity dashboard is designed to help individuals, students,
 - [License](#license)
 
 
-## About the Application
+---
 
-## Features
+## ✨ Features
 
-- Task management with smart prioritisation
-- Pomodoro Technique
-- Habit tracking and reinforcement
-- Focus session management with Pomodoro technique
-- Personalised productivity insights and recommendations
-- Progress visualisation and reporting
-- AI-powered coaching based on your work patterns
-- Task creation and categorisation (e.g., Work, Study, Personal)
-- Live digital clock and date tracking
-- Visual task progress indicators with completion animations
-- Optimised task scheduling based on time and priority
-- Integration of the Pomodoro Technique for time-blocked focus sessions
-- Recommendations for task batching to improve efficiency and reduce context switching
-- Toggle-based views for completed vs. pending tasks
-- Responsive design adaptable to mobile and desktop screens
-- Animated transitions for task status updates
-- End-of-day summary and reset functionality
+- ✅ **Smart Task Manager** – Add, categorise (Work, Study, Personal), prioritise, and estimate time for tasks.
+- ⏳ **Focus Session Management** – Integration of the Pomodoro Technique for structured, time-blocked productivity.
+- 🔄 **Optimised Scheduling** – Smart scheduling engine adjusts your task list based on time availability, priority, and focus state.
+- 📊 **Visual Analytics** – Real-time charts, animated completion indicators, and habit reinforcement graphs.
+- 🧠 **AI-Powered Coaching** – Analyses your patterns and provides personalised suggestions to improve workflow.
+- 🧩 **Cognitive Load Scheduling** – Groups similar tasks to reduce context switching and mental strain.
+- 🎯 **Goal-Oriented Insights** – Tracks progress, completion rates, and daily goals to reinforce habits.
+- 📅 **Adaptive Calendar** – Dynamically reshuffles your day as tasks are completed or priorities shift.
+- ⏱ **Pomodoro Cycle Recommendations** – Recommends focus intervals tailored to workload and cognitive patterns.
+- 🔁 **Task Batching** – Suggests grouping of related tasks for efficiency.
+- ✅ **Toggle Task Views** – Switch between completed and pending task modes.
+- 📆 **End-of-Day Summary** – Provides a daily wrap-up with progress stats and resets.
+- 📱 **Responsive Design** – Optimised for both mobile and desktop viewing.
+- 🕒 **Live Clock & Date Display** – Keeps you aware of time while planning your workflow.
+- 🎬 **Animated Transitions** – Smooth, interactive updates on task completion and changes.
+
+---
+
+## 🔍 How It Works
+
+1. **Input Tasks**
+   - Define tasks with category, priority, and duration. Add descriptions to enrich your planning.
+
+2. **System Analysis**
+   - Your task data is analysed for time allocation, category dominance, focus depth, and habits.
+
+3. **Interactive Feedback**
+   - View animated charts and progress bars showing how your time is being used and your completion rates.
+
+4. **Smart Suggestions**
+   - Receive Pomodoro interval recommendations and coaching tips based on your patterns.
+
+5. **Dynamic Updates**
+   - Your task list and calendar dynamically adapt to your real-time actions and changing priorities.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Backend**: Python (Flask)
+- **Frontend**: HTML5, Bootstrap, AOS.js, Chart.js
+- **Database**: SQLite (default) / PostgreSQL (optional)
+- **Visualisation**: Chart.js, progress bars, animated task cards
+- **Deployment**: Flask CLI, Gunicorn, Docker-ready
+
+---
 
 ## Installation
 
