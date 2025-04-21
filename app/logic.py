@@ -120,6 +120,207 @@ def generate_charts(df):
     plt.close()
 
 
+# Add to logic.py
 
+from datetime import datetime, timedelta
+
+def calculate_task_priority(task_name, category, duration, energy_level):
+    """
+    Calculate priority score for a task based on its attributes.
+    
+    Parameters:
+    - task_name: Name of the task
+    - category: Category of the task
+    - duration: Duration in minutes
+    - energy_level: User's reported energy level (Low/Medium/High)
+    
+    Returns:
+    - priority_score: Numerical score for task priority
+    """
+    # Base priority score
+    priority_score = 0
+    
+    # Priority based on category type
+    category_priority = {
+        'Deep Work': 10,
+        'Creative Session': 9,
+        'Learning & Development': 8,
+        'Planning & Strategy': 7,
+        'Collaboration': 6,
+        'Client Engagement': 6,
+        'Team Management': 5,
+        'Documentation': 4,
+        'Admin': 3,
+        'Shallow Work': 2,
+        'Support & Maintenance': 2,
+        'Errands & Admin (Personal)': 1,
+        'Reflection & Review': 4
+    }
+    
+    priority_score += category_priority.get(category, 0)
+    
+    # Adjust priority based on energy level and task category type
+    task_type = CATEGORY_TYPE_MAP.get(category, 'other')
+    
+    if energy_level == 'High':
+        # When energy is high, prioritize focus tasks
+        if task_type == 'focus':
+            priority_score += 5
+    elif energy_level == 'Low':
+        # When energy is low, focus tasks are harder to do
+        if task_type == 'focus':
+            priority_score -= 3
+        # Low energy tasks get priority when tired
+        if task_type == 'other' and duration <= 30:  # Short administrative tasks
+            priority_score += 2
+    
+    # Urgent/important keywords in task name
+    urgent_keywords = ['urgent', 'deadline', 'today', 'important', 'critical', 'due']
+    if any(keyword in task_name.lower() for keyword in urgent_keywords):
+        priority_score += 5
+    
+    # Consider duration - shorter tasks may be easier to complete
+    if duration <= 15:
+        priority_score += 1
+    
+    return priority_score
+
+def optimise_task_schedule(tasks, categories, durations, start_time, end_time, energy_level):
+    """
+    optimise task ordering based on priority scores and time constraints.
+    
+    Parameters:
+    - tasks: List of task names
+    - categories: List of task categories
+    - durations: List of task durations (minutes)
+    - start_time: Schedule start time
+    - end_time: Schedule end time
+    - energy_level: User's reported energy level
+    
+    Returns:
+    - optimised_schedule: List of task blocks with optimised timing
+    """
+    # Calculate priority for each task
+    task_priorities = []
+    total_duration = sum(durations)
+    
+    for i in range(len(tasks)):
+        priority = calculate_task_priority(tasks[i], categories[i], durations[i], energy_level)
+        task_priorities.append({
+            'index': i,
+            'task': tasks[i],
+            'category': categories[i],
+            'duration': durations[i],
+            'priority': priority
+        })
+    
+    # Sort tasks by priority (highest first)
+    sorted_tasks = sorted(task_priorities, key=lambda x: x['priority'], reverse=True)
+    
+    # Time blocking - allocate specific time blocks
+    current_time = start_time
+    optimised_schedule = []
+    
+    # First pass: Schedule high-priority focus work during peak energy hours
+    peak_hours_start = start_time + timedelta(hours=1)  # Assuming peak is 1 hour after start
+    peak_hours_end = peak_hours_start + timedelta(hours=3)  # 3-hour peak window
+    
+    # Schedule focus tasks during peak hours
+    focus_tasks = [t for t in sorted_tasks if CATEGORY_TYPE_MAP.get(t['category'], 'other') == 'focus']
+    
+    remaining_tasks = []
+    current_time = start_time
+    
+    if energy_level == 'High' or energy_level == 'Medium':
+        # Process focus tasks first during high/medium energy
+        for task in focus_tasks:
+            task_duration = timedelta(minutes=task['duration'])
+            task_end_time = current_time + task_duration
+            
+            if task_end_time <= end_time:
+                optimised_schedule.append({
+                    'task': task['task'],
+                    'category': task['category'],
+                    'start': current_time.strftime("%I:%M %p"),
+                    'end': task_end_time.strftime("%I:%M %p")
+                })
+                current_time = task_end_time
+                
+                # Add break after focus tasks if it's a long task
+                if task['duration'] > 45:
+                    break_end = current_time + timedelta(minutes=10)
+                    if break_end <= end_time:
+                        optimised_schedule.append({
+                            'task': 'Quick Break',
+                            'category': 'Break',
+                            'start': current_time.strftime("%I:%M %p"),
+                            'end': break_end.strftime("%I:%M %p")
+                        })
+                        current_time = break_end
+            else:
+                remaining_tasks.append(task)
+    else:
+        # For low energy, start with easier tasks
+        remaining_tasks = focus_tasks
+    
+    # Add non-focus tasks to remaining
+    remaining_tasks.extend([t for t in sorted_tasks if CATEGORY_TYPE_MAP.get(t['category'], 'other') != 'focus' and t not in remaining_tasks])
+    
+    # Process remaining tasks
+    for task in remaining_tasks:
+        task_duration = timedelta(minutes=task['duration'])
+        task_end_time = current_time + task_duration
+        
+        if task_end_time <= end_time:
+            optimised_schedule.append({
+                'task': task['task'],
+                'category': task['category'],
+                'start': current_time.strftime("%I:%M %p"),
+                'end': task_end_time.strftime("%I:%M %p")
+            })
+            current_time = task_end_time
+    
+    return optimised_schedule
+
+def generate_time_blocked_schedule(tasks, categories, start_times, end_times, energy):
+    """
+    Generate an optimised time-blocked schedule based on tasks and energy level.
+    """
+    # Parse user-provided start and end times
+    parsed_start_times = [datetime.strptime(t, "%H:%M") for t in start_times]
+    parsed_end_times = [datetime.strptime(t, "%H:%M") for t in end_times]
+    
+    # Calculate durations for each task
+    durations = []
+    for i in range(len(parsed_start_times)):
+        duration_delta = parsed_end_times[i] - parsed_start_times[i]
+        duration_minutes = duration_delta.total_seconds() / 60
+        durations.append(duration_minutes)
+    
+    # Find overall schedule start and end times
+    schedule_start = min(parsed_start_times)
+    schedule_end = max(parsed_end_times)
+    
+    # Build time-blocked schedule
+    time_blocks = []
+    
+    # Add energy level information
+    time_blocks.append({'energy': energy})
+    
+    # Generate optimised schedule if user wants automatic time blocking
+    user_schedule = []
+    for i in range(len(tasks)):
+        task_block = {
+            'task': tasks[i],
+            'category': categories[i],
+            'start': parsed_start_times[i].strftime("%I:%M %p"),
+            'end': parsed_end_times[i].strftime("%I:%M %p")
+        }
+        user_schedule.append(task_block)
+    
+    # Add user's schedule to time blocks
+    time_blocks.extend(user_schedule)
+    
+    return time_blocks
 
 

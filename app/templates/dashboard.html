@@ -4,43 +4,79 @@
 {% endblock %}
 {% block content %}
 <h1 class="text-center mb-4">{% include 'include/icon.html' %} AI Productivity Dashboard</h1>
-<div class="container my-5">
-
-        <div class="row text-center mb-4">
-            <div class="col-md-3">
-                <div class="card p-3 shadow-sm">
-                    <h4>Focus Time</h4>
-                    <p>{{ stats.focus }} mins</p>
-                </div>
+<div class="container mt-5">
+    <h1 class="mb-4">
+        Your Productivity Dashboard
+        {% if is_optimised %}
+        <span class="optimised-badge">optimised Schedule</span>
+        {% endif %}
+    </h1>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="stat-card">
+                <h3>Productivity Metrics</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Focus Time
+                        <span class="badge bg-primary rounded-pill">{{ stats.focus }} min</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Break Time
+                        <span class="badge bg-success rounded-pill">{{ stats.break }} min</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Other Activities
+                        <span class="badge bg-secondary rounded-pill">{{ stats.other }} min</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Productivity Ratio
+                        <span class="badge bg-info rounded-pill">{{ stats.productivity_ratio }}%</span>
+                    </li>
+                </ul>
             </div>
-            <div class="col-md-3">
-                <div class="card p-3 shadow-sm">
-                    <h4>Break Time</h4>
-                    <p>{{ stats.break }} mins</p>
-                </div>
+            
+            {% if not is_optimised %}
+            <div class="optimise-btn">
+                <form action="/optimise" method="post" id="optimiseForm">
+                    <!-- Hidden inputs to carry over task data -->
+                    <input type="hidden" name="energy" value="{{ request.form['energy'] }}">
+                    {% for task in request.form.getlist('task') %}
+                        <input type="hidden" name="task" value="{{ task }}">
+                    {% endfor %}
+                    {% for category in request.form.getlist('category') %}
+                        <input type="hidden" name="category" value="{{ category }}">
+                    {% endfor %}
+                    {% for time in request.form.getlist('start_time') %}
+                        <input type="hidden" name="start_time" value="{{ time }}">
+                    {% endfor %}
+                    {% for time in request.form.getlist('end_time') %}
+                        <input type="hidden" name="end_time" value="{{ time }}">
+                    {% endfor %}
+                    
+                    <button type="submit" class="btn btn-success">optimise My Schedule</button>
+                </form>
             </div>
-            <div class="col-md-3">
-                <div class="card p-3 shadow-sm">
-                    <h4>Other Time</h4>
-                    <p>{{ stats.other }} mins</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card p-3 shadow-sm">
-                    <h4>Productivity Ratio</h4>
-                    <p>{{ stats.productivity_ratio }}%</p>
-                </div>
+            {% endif %}
+        </div>
+        
+        <div class="col-md-6">
+            <div class="stat-card">
+                <h3>Time Distribution</h3>
+                <img src="{{ url_for('static', filename='charts/pie_chart.png') }}" alt="Category Distribution" class="img-fluid">
             </div>
         </div>
-
-        <div class="row text-center">
-            <div class="col-md-6 mb-4">
-                <img src="{{ url_for('static', filename='charts/pie_chart.png') }}" class="img-fluid shadow">
-            </div>
-            <div class="col-md-6 mb-4">
-                <img src="{{ url_for('static', filename='charts/bar_chart.png') }}" class="img-fluid shadow">
-            </div>
-        </div>
+    </div>
+    
+    <div class="chart-container">
+        <h3>Time Spent per Task</h3>
+        <img src="{{ url_for('static', filename='charts/bar_chart.png') }}" alt="Time per Task" class="img-fluid">
+    </div>
+    
+    <div class="mt-4 mb-5">
+        <a href="/tasks" class="btn btn-primary">Plan Another Day</a>
+        <a href="/" class="btn btn-outline-secondary ms-2">Back to Home</a>
+    </div>
 </div>
     
     {% endblock %}
