@@ -110,6 +110,43 @@ The AI-Based Productivity Coach is a Flask-based web application that helps user
 | ![dashboard](screenshots/dashboard.png) | ![analytics](screenshots/analytics.png) |
 
 
+## Directory and File Descriptions
+
+### Root Directory
+
+- **main.py**: Application entry point. Initializes and runs the Flask application.
+- **config.py**: Configuration file containing settings like host, port, and debug mode.
+- **requirements.txt**: Lists all Python dependencies required by the application.
+- **README.md**: Documentation on how to install and use the application.
+
+### `app` Directory
+
+The main application package containing all application code.
+
+- **__init__.py**: Initializes the Flask application and brings together all components.
+- **logic.py**: Contains the core business logic of the productivity coach.
+- **routes.py**: Defines all application routes and view functions.
+- **static**: Directory for static assets (CSS, JavaScript, images).
+- **templates**: Directory for HTML templates used in the application.
+
+
+## Application Flow
+
+1. The application starts from `main.py`, which imports and runs the Flask application.
+2. The Flask application is defined and configured in `app/__init__.py`.
+3. Routes in `routes.py` handle HTTP requests and interact with the logic layer.
+4. Core functionality is implemented in `logic.py`.
+5. Views are rendered using templates from the `templates` directory.
+6. Static assets are served from the `static` directory.
+
+## Development Guidelines
+
+- New routes should be added to `routes.py`
+- Business logic should be implemented in `logic.py` or in new modules within the `app` package
+- Frontend assets should be placed in appropriate directories under `static`
+- HTML templates should be placed in the `templates` directory
+
+
 
 ## Installation
 
