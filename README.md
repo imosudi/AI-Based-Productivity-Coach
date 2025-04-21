@@ -14,6 +14,11 @@ The AI-Based Productivity Coach is a Flask-based web application that helps user
 - [Features](#features)
 - [How it works](#HowItWorks)
 - [Tech Stack](#TechStack)
+- [Project Structure](#Project_Structure)
+- [Screenshots](#Screenshots)
+- [Directory and File Descriptions](#Directory_and_File_Descriptions)
+- [Application Flow](#Application_Flow)
+- [Development Guidelines](#DevelopmentGuidelines)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
   - [Fork and Clone the Repository](#fork-and-clone-the-repository)
@@ -22,9 +27,11 @@ The AI-Based Productivity Coach is a Flask-based web application that helps user
 - [Running the Application](#running-the-application)
 - [Usage Guide](#usage-guide)
 - [Troubleshooting](#troubleshooting)
+- [Getting Help](#GettingHelp)
+- [Contributing](#Contributing) 
 - [Contributing](#contributing)
 - [License](#license)
-
+- [About Pomodoro Technique](#AboutPomodoroTechnique)
 
 ---
 
