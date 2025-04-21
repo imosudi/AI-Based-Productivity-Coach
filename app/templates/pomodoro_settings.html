@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block page %} - Pomodoro Technique Settings{% endblock %} 
+{% block page_header %} Pomodoro Technique Settings  {% endblock %}
+{% block content %}
+<div class="container py-3">
+    <div class="card shadow p-4">
+        <h3 class="card-title mb-4">Customize Your Pomodoro Schedule</h3>
+        
+        <form action="/pomodoro" method="post" id="pomodoroForm">
+            <!-- Hidden inputs to carry over task data -->
+            <input type="hidden" name="energy" value="{{ request.form['energy'] }}">
+            {% for task in request.form.getlist('task') %}
+                <input type="hidden" name="task" value="{{ task }}">
+            {% endfor %}
+            {% for category in request.form.getlist('category') %}
+                <input type="hidden" name="category" value="{{ category }}">
+            {% endfor %}
+            {% for time in request.form.getlist('start_time') %}
+                <input type="hidden" name="start_time" value="{{ time }}">
+            {% endfor %}
+            {% for time in request.form.getlist('end_time') %}
+                <input type="hidden" name="end_time" value="{{ time }}">
+            {% endfor %}
+            
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <label for="focusDuration" class="form-label">Focus Duration (minutes)</label>
+                    <input type="number" class="form-control" id="focusDuration" name="focus_duration" min="10" max="60" value="25" required>
+                    <div class="form-text">Standard Pomodoro focus period is 25 minutes</div>
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="shortBreak" class="form-label">Short Break Duration (minutes)</label>
+                    <input type="number" class="form-control" id="shortBreak" name="short_break" min="3" max="15" value="5" required>
+                    <div class="form-text">Standard short break is 5 minutes</div>
+                </div>
+            </div>
+            
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <label for="longBreak" class="form-label">Long Break Duration (minutes)</label>
+                    <input type="number" class="form-control" id="longBreak" name="long_break" min="10" max="30" value="15" required>
+                    <div class="form-text">Standard long break is 15 minutes</div>
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="sessionsBeforeLongBreak" class="form-label">Sessions Before Long Break</label>
+                    <input type="number" class="form-control" id="sessionsBeforeLongBreak" name="sessions_before_long_break" min="2" max="6" value="4" required>
+                    <div class="form-text">Standard is 4 focus sessions before a long break</div>
+                </div>
+            </div>
+            
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">Generate Pomodoro Schedule</button>
+                <a href="/dashboard" class="btn btn-outline-secondary">Back to Standard Schedule</a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="card shadow p-4 mt-4">
+        <h3 class="card-title mb-3">About the Pomodoro Technique</h3>
+        <div class="row g-4 mt-2">
+            <div class="col-md-6">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-lightbulb-fill text-warning"></i> Tips</h5>
+                        <ul class="mb-0">
+                            <li>Use shorter focus periods (15-20 min) if your concentration wanes quickly</li>
+                            <li>For deep work, consider longer sessions (40-50 min)</li>
+                            <li>Take longer breaks if you're working on creative tasks</li>
+                            <li>Stay hydrated during breaks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <img src="{{url_for('static', filename='assets/images/logo.png')}}" alt="Logo" width="100%">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
