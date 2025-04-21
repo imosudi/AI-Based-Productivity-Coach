@@ -72,7 +72,7 @@ The AI-Based Productivity Coach is a Flask-based web application that helps user
 - **Frontend**: HTML5, Bootstrap, AOS.js, Chart.js
 - **Database**: SQLite (default) / PostgreSQL (optional)
 - **Visualisation**: Chart.js, progress bars, animated task cards
-- **Deployment**: Flask CLI, Gunicorn, Docker-ready
+- **Deployment**: Flask CLI, Gunicorn, Docker-ready,Apache2
 
 ---
 
