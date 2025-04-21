@@ -1,8 +1,8 @@
-# 🧠  AI-Based Productivity Coach
+# 🧠  AI-Based Productivity Coach - Smart Productivity Dashboard
 ![alt text](app/static/assets/images/logo.png)
 
-💡 About the AI-Based Productivity Coach
-AI-Based Productivity Coach is a dynamic and intelligent task and time management tool built to optimise your productivity through:
+## 💡 About Smart Productivity Dashboard
+Smart Productivity Dashboard is a dynamic and intelligent task and time management tool built to optimise your productivity through:
 
 📊 Real-time analytics
 📈 Visual progress feedback
@@ -16,7 +16,7 @@ Whether you're planning your day or reviewing completed tasks, the AI Coach adap
 ## 🚀 Overview
 
 <div align="justify">
-The AI-Based Productivity Coach is a Flask-based web application that helps users manage their tasks, visualise progress, and improve focus through features like Pomodoro recommendations and cognitive load balancing. Built for individuals and teams who want to make the most out of their time, this tool intelligently analyses user inputs and adapts daily workflows dynamically. This web-based productivity dashboard is designed to help individuals, students, and professionals organise their tasks, manage their time, and track their daily activities with enhanced efficiency. Built using Flask, HTML, CSS, and JavaScript, the application integrates smart scheduling tools and visual progress indicators to provide users with an intuitive and interactive experience. It supports dynamic task updates, categorisation, and daily summaries, empowering users to prioritise their goals and stay focused. By incorporating productivity techniques like the Pomodoro method and intelligent task batching, the application fosters a well-structured approach to time management. Whether you're working on personal goals or managing multiple professional commitments, this dashboard is tailored to improve productivity, ensure optimal use of time, and support a balanced workflow.
+Smart Productivity Dashboard is a Flask-based web application that helps users manage their tasks, visualise progress, and improve focus through features like Pomodoro recommendations and cognitive load balancing. Built for individuals and teams who want to make the most out of their time, this tool intelligently analyses user inputs and adapts daily workflows dynamically. This web-based productivity dashboard is designed to help individuals, students, and professionals organise their tasks, manage their time, and track their daily activities with enhanced efficiency. Built using Flask, HTML, CSS, and JavaScript, the application integrates smart scheduling tools and visual progress indicators to provide users with an intuitive and interactive experience. It supports dynamic task updates, categorisation, and daily summaries, empowering users to prioritise their goals and stay focused. By incorporating productivity techniques like the Pomodoro method and intelligent task batching, the application fosters a well-structured approach to time management. Whether you're working on personal goals or managing multiple professional commitments, this dashboard is tailored to improve productivity, ensure optimal use of time, and support a balanced workflow.
 </div>
 
 
