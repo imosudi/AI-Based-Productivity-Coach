@@ -111,10 +111,10 @@ The AI-Based Productivity Coach is a Flask-based web application that helps user
 | ![Home page](screenshots/homepage.png)|
 | Dashboard |  |
 |----------|-----------|
-| ![dashboard](screenshots/dashboard.png) |
+| ![dashboard](screenshots/dashboard.png)|
 | Pomodo Schedule |  |
 |----------|-----------|
-| ![Pomodo Schedule](screenshots/pomodo_schedule.png) |
+| ![Pomodo Schedule](screenshots/pomodo_schedule.png)|
 
 ## Directory and File Descriptions
 
@@ -239,10 +239,10 @@ The application will be running on http://0.0.0.0:9921 (You can access it via ht
 
 Once the application is running, you can:
 
-1. **Create an account or log in** if authentication is required
-2. **Set up your productivity profile** by answering questions about your work habits
+1. **Create an account or log in** if authentication is required -TODO
+2. **Set up your productivity profile** by answering questions about your work habits -TODO
 3. **Add tasks and projects** you want to track
-4. **Set up habits** you want to develop
+4. **Set up habits** you want to develop - TODO 
 5. **Start focus sessions** when you're ready to work
 6. **Review insights** from the AI coach to improve your productivity
 
