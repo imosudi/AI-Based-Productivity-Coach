@@ -79,7 +79,28 @@ The AI-Based Productivity Coach is a Flask-based web application that helps user
 
 ## 📁 Project Structure
 
-📦 productivity-dashboard/ ├── 📁 static/ │ └── css, js, icons, assets ├── 📁 templates/ │ └── index.html, dashboard.html, etc. ├── 📁 app/ │ ├── init.py │ ├── routes.py │ ├── models.py │ └── utils.py ├── config.py ├── run.py └── README.md
+```
+📦 AI-Based-Productivity-Coach/
+├── 📁 app
+│   ├── __init__.py
+│   ├── logic.py
+│   ├── routes.py
+│   ├── 📁 static
+│   │   ├── 📁 assets
+│   │   └── 📁 charts
+|   |
+│   └── 📁 templates
+│       ├── base.html
+│       ├── dashboard.html
+│       ├── 📁 include
+│       ├── index.html
+│       ├── pomodoro_settings.html
+│       └── tasks.html
+├── config.py
+├── main.py
+├── README.md
+└── requirements.txt
+```
 
 
 ## Installation
