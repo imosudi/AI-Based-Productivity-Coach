@@ -103,6 +103,14 @@ The AI-Based Productivity Coach is a Flask-based web application that helps user
 ```
 
 
+## 📸 Screenshots
+
+| Dashboard | Analytics |
+|----------|-----------|
+| ![dashboard](screenshots/dashboard.png) | ![analytics](screenshots/analytics.png) |
+
+
+
 ## Installation
 
 ### Prerequisites
