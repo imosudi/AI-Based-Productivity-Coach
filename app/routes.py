@@ -7,6 +7,9 @@ from . import app, dir_path
 def index():
     return render_template('index.html')
 
+@app.route('/tasks')
+def tasks():
+    return render_template('tasks.html')
 
 @app.route('/dashboard', methods=['POST'])
 def dashboard():

@@ -1,86 +1,47 @@
+
+
 {% extends "base.html" %}
 {% block title %}
-<title>AI Productivity - Task Input</title>
+<title>AI Productivity Coach</title>
 {% endblock %}
 {% block content %}
-<h1 class="text-center mb-4"> {% include 'include/icon.html' %} AI Productivity - Task Input</h1>
-<div class="container my-5"
-        <h2>Enter Your Task List</h2>
-        <form method="post" action="/dashboard">
-            <div class="card container">
-                <div id="taskInputs">
-                    <div class="mb-3 border rounded p-3">
-                        <input name="task" placeholder="Task" class="form-control mb-2" required>
-                        <select name="category" class="form-control mb-2" required>
-                            <option value="" disabled selected>Choose Category</option>
-                            <option value="Deep Work">Deep Work</option>
-                            <option value="Creative Work">Creative Work</option>
-                            <option value="Planning & Strategy">Planning & Strategy</option>
-                            <option value="Learning & Development">Learning & Development</option>
-                            <option value="Collaboration">Collaboration</option>
-                            <option value="Meetings (1-on-1)">Meetings (1-on-1)</option>
-                            <option value="Team Management">Team Management</option>
-                            <option value="Client Engagement">Client Engagement</option>
-                            <option value="Documentation">Documentation</option>
-                            <option value="Support & Maintenance">Support & Maintenance</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Shallow Work">Shallow Work</option>
-                            <option value="Reflection & Review">Reflection & Review</option>
-                            <option value="Break">Break</option>
-                            <option value="Errands & Admin (Personal)">Errands & Admin (Personal)</option>
-                        </select>
-                        <input name="start_time" type="time" class="form-control mb-2" required>
-                        <input name="end_time" type="time" class="form-control" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <button type="button" class="col-md-4 btn-secondary mb-3" onclick="addTask()">+ Add Task</button>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label>Your Peak Energy Period</label>
-                <select name="energy" class="form-control">
-                    <option value=""> Select... </option>
-                    <option value="morning">Morning</option>
-                    <option value="afternoon">Afternoon</option>
-                    <option value="evening">Evening</option>
-                </select>
-            </div>
-            <button class="btn btn-primary" type="submit">Generate Schedule</button>
-        </form>
-    </div>
+<h1 class="text-center mb-4">{% include 'include/icon.html' %} AI Productivity Coach</h1>
+<div class="container my-5">
+    <h1>Welcome to the AI Productivity Coach</h1>
+    <p class="lead">Transform the way you manage your time and tasks with our intelligent productivity tool.</p>
+    
+    
+    <h2>About the Application</h2>
+    <p>
+        The AI Productivity Coach is designed to help you enhance your productivity by providing insights into how you spend your time. 
+        It allows you to track tasks, categorize them, and visualize your productivity through intuitive charts.
+    </p>
+
+    <h2>Features</h2>
+    <ul class="list-unstyled">
+        <li><strong>Task Management:</strong> Easily add, edit, and organize your tasks.</li>
+        <li><strong>Time Tracking:</strong> Log start and end times for each task to understand how you allocate your time.</li>
+        <li><strong>Productivity Insights:</strong> Receive detailed statistics on your productivity levels.</li>
+        <li><strong>Visual Analytics:</strong> Generate charts to visualize your time spent across different categories.</li>
+    </ul>
+
+    <h2>Benefits</h2>
+    <p>
+        By using the AI Productivity Coach, you can:
+    </p>
+    <ul>
+        <li>Identify areas for improvement in your time management.</li>
+        <li>Make data-driven decisions to enhance your work habits.</li>
+        <li>Achieve a better work-life balance by allocating time effectively.</li>
+    </ul>
+
+    <h2>How It Works</h2>
+    <p>
+        Simply enter your tasks along with their categories and timeframes. The application will generate a detailed schedule, 
+        compute your productivity stats, and visualize the results through charts.
+    </p>
+
+    <a href="{{ url_for('tasks') }}" class="btn btn-primary btn-lg">Get Started</a>
+</div>
 {% endblock %}
 
-    <script>
-        function addTask() {
-            const container = document.getElementById('taskInputs');
-            const html = `
-                <div class="mb-3 border rounded p-3">
-                    <input name="task" placeholder="Task" class="form-control mb-2" required>
-                    <select name="category" class="form-control mb-2" required>
-                        <option value="" disabled selected>Choose Category</option>
-                        <option value="Deep Work">Deep Work</option>
-                        <option value="Creative Work">Creative Work</option>
-                        <option value="Planning & Strategy">Planning & Strategy</option>
-                        <option value="Learning & Development">Learning & Development</option>
-                        <option value="Collaboration">Collaboration</option>
-                        <option value="Meetings (1-on-1)">Meetings (1-on-1)</option>
-                        <option value="Team Management">Team Management</option>
-                        <option value="Client Engagement">Client Engagement</option>
-                        <option value="Documentation">Documentation</option>
-                        <option value="Support & Maintenance">Support & Maintenance</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Shallow Work">Shallow Work</option>
-                        <option value="Reflection & Review">Reflection & Review</option>
-                        <option value="Break">Break</option>
-                        <option value="Errands & Admin (Personal)">Errands & Admin (Personal)</option>
-                    </select>
-                    <input name="start_time" type="time" class="form-control mb-2" required>
-                    <input name="end_time" type="time" class="form-control" required>
-                </div>
-            `;
-            container.insertAdjacentHTML('beforeend', html);
-        }
-    </script>
-</body>
-</html>
