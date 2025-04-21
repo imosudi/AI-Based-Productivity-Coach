@@ -90,6 +90,60 @@
                 70% { box-shadow: 0 0 0 10px rgba(40,167,69, 0); }
                 100% { box-shadow: 0 0 0 0 rgba(40,167,69, 0); }
             }
+        </style>
+        <!-- CSS for Digital Clock Styling -->
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+            
+            #digital-clock {
+                font-family: 'Orbitron', sans-serif; /* Popular digital clock font */
+                font-size: 1.2rem;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+            
+            #year {
+                color: #4285F4; /* Bright blue */
+            }
+            
+            #month {
+                color: #34A853; /* Bright green */
+            }
+            
+            #day {
+                color: #FBBC05; /* Bright yellow */
+            }
+            
+            #hours {
+                color: #9c27b0; /* Bright purple */
+            }
+            
+            #minutes {
+                color: #00BCD4; /* Bright cyan */
+            }
+            
+            #seconds {
+                color: #FF0000; /* Red for seconds as requested */
+            }
+            
+            .clock-segment {
+                display: inline-block;
+                min-width: 2.5ch; /* Keep consistent width */
+                text-align: center;
+            }
+            
+            /* Make the clock more responsive for smaller screens */
+            @media (max-width: 992px) {
+                #digital-clock {
+                    font-size: 1.3rem;
+                }
+            }
+            
+            @media (max-width: 768px) {
+                #digital-clock {
+                    font-size: 1.1rem;
+                }
+            }
         </style>    
     {% endblock styles %}
 
@@ -117,7 +171,18 @@
                 </button>
                 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
+                    <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
+                        <!-- Digital Clock -->
+                        <li class="nav-item me-3">
+                            <div id="digital-clock" class="nav-link">
+                                <span id="year" class="clock-segment"></span>: 
+                                <span id="month" class="clock-segment"></span>: 
+                                <span id="day" class="clock-segment"></span>: 
+                                <span id="hours" class="clock-segment"></span>: 
+                                <span id="minutes" class="clock-segment"></span>: 
+                                <span id="seconds" class="clock-segment"></span>
+                            </div>
+                        </li>
                         <li class="nav-item">
                             <a class="fw-bolder nav-link" href="{{ url_for('index') }}">
                                 <i class="bi bi-house-door-fill"></i> Home
@@ -145,6 +210,35 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+    </script>
+
+    <!-- JavaScript for Digital Clock -->
+    <script>
+        function updateClock() {
+            const now = new Date();
+            
+            // Format each component with leading zeros as needed
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            // Update each element separately
+            document.getElementById('year').textContent = year;
+            document.getElementById('month').textContent = month;
+            document.getElementById('day').textContent = day;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        
+        // Initial call
+        updateClock();
+        
+        // Update the clock every second
+        setInterval(updateClock, 1000);
     </script>
 </body>
 </html>
