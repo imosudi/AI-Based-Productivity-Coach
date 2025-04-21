@@ -1,140 +1,137 @@
 
 {% extends "base.html" %}
-{% block title %}
-<title>AI Productivity - Task Input</title>
-{% endblock %}
+{% block page %} - Task Input{% endblock %} 
+{% block page_header %} Task Input  {% endblock %}
 {% block content %}
-<h1 class="text-center mb-4"> {% include 'include/icon.html' %} AI Productivity - Task Input</h1>
-<div class="container mt-5">
-    <h1 class="mb-4">Plan Your Day</h1>
-    
-    <form action="/dashboard" method="post" id="taskForm">
-        <div class="mb-4">
-            <label class="form-label">What's your energy level today?</label>
-            <select name="energy" class="form-select" required>
-                <option value="">Select Energy Level</option>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-            </select>
-        </div>
-        
-        <div class="form-option">
-            <div class="form-check form-switch">
+
+
+<div class="container mt-3" data-aos="fade-up">
+    <div class="card shadow-lg p-4">
+        <h2 class="card-title mb-4">Plan Your Day</h2>
+
+        <form action="/dashboard" method="post" id="taskForm">
+            <div class="mb-4">
+                <label class="form-label">What's your energy level today?</label>
+                <select name="energy" class="form-select" required>
+                    <option value="">Select Energy Level</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+
+            <div class="form-check form-switch mb-3">
                 <input class="form-check-input" type="checkbox" id="useTimeBlocking" name="use_time_blocking">
                 <label class="form-check-label" for="useTimeBlocking">
-                    optimise task scheduling (time blocking)
+                    Optimise task scheduling (time blocking)
                 </label>
-            </div>
-            <small class="text-muted">
-                When enabled, the system will optimise your task order based on task priority and your energy level.
-            </small>
-        </div>
-        
-        <h3 class="mt-4 mb-3">Add Your Tasks</h3>
-        <div id="taskContainer">
-            <div class="task-row">
-                <div class="row">
-                    <div class="col-md-6 mb-2">
-                        <input type="text" name="task" class="form-control" placeholder="Task" required>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <select name="category" class="form-select" required>
-                            <option value="">Select Category</option>
-                            <option value="Deep Work">Deep Work</option>
-                            <option value="Creative Session">Creative Session</option>
-                            <option value="Learning & Development">Learning & Development</option>
-                            <option value="Planning & Strategy">Planning & Strategy</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Shallow Work">Shallow Work</option>
-                            <option value="Collaboration">Collaboration</option>
-                            <option value="Meetings (1-on-1)">Meetings (1-on-1)</option>
-                            <option value="Documentation">Documentation</option>
-                            <option value="Support & Maintenance">Support & Maintenance</option>
-                            <option value="Client Engagement">Client Engagement</option>
-                            <option value="Team Management">Team Management</option>
-                            <option value="Errands & Admin (Personal)">Errands & Admin (Personal)</option>
-                            <option value="Reflection & Review">Reflection & Review</option>
-                            <option value="Break">Break</option>
-                            <option value="Lunch">Lunch</option>
-                            <option value="Short Break">Short Break</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-2">
-                        <label class="form-label">Start Time</label>
-                        <input type="time" name="start_time" class="form-control" required>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <label class="form-label">End Time</label>
-                        <input type="time" name="end_time" class="form-control" required>
-                    </div>
+                <div class="form-text">
+                    When enabled, the system will optimise your task order based on task priority and your energy level.
                 </div>
             </div>
+
+            <h3 class="mt-4 mb-3">Add Your Tasks</h3>
+            <div id="taskContainer">
+                <div class="task-row card border-0 shadow-sm p-3 mb-4 position-relative" data-aos="fade-up">
+    <button type="button" class="btn-close position-absolute top-0 end-0 m-3 remove-task" aria-label="Remove Task" title="Remove this task"></button>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="task" class="form-control" placeholder="Task" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <select name="category" class="form-select" required>
+                                <option value="">Select Category</option>
+                                <option value="Deep Work">Deep Work</option>
+                                <option value="Creative Session">Creative Session</option>
+                                <option value="Learning & Development">Learning & Development</option>
+                                <option value="Planning & Strategy">Planning & Strategy</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Shallow Work">Shallow Work</option>
+                                <option value="Collaboration">Collaboration</option>
+                                <option value="Meetings (1-on-1)">Meetings (1-on-1)</option>
+                                <option value="Documentation">Documentation</option>
+                                <option value="Support & Maintenance">Support & Maintenance</option>
+                                <option value="Client Engagement">Client Engagement</option>
+                                <option value="Team Management">Team Management</option>
+                                <option value="Errands & Admin (Personal)">Errands & Admin (Personal)</option>
+                                <option value="Reflection & Review">Reflection & Review</option>
+                                <option value="Break">Break</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Short Break">Short Break</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Start Time</label>
+                            <input type="time" name="start_time" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">End Time</label>
+                            <input type="time" name="end_time" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex gap-3 mb-4">
+                <button type="button" id="addTask" class="btn btn-outline-secondary" data-aos="fade-up">Add Another Task</button>
+                <button type="submit" class="btn btn-primary" data-aos="fade-up">Generate Dashboard</button>
+            </div>
+        </form>
+
+        <div class="text-center" data-aos="fade-up">
+            <a href="/" class="btn btn-outline-dark">Back to Home</a>
         </div>
-        
-        <div class="mb-3">
-            <button type="button" id="addTask" class="btn btn-secondary">Add Another Task</button>
-        </div>
-        
-        <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Generate Dashboard</button>
-        </div>
-    </form>
-    
-    <div class="mt-3">
-        <a href="/" class="btn btn-outline-secondary">Back to Home</a>
     </div>
 </div>
+
 <script>
-    document.getElementById('addTask').addEventListener('click', function() {
+    function updateRemoveButtons() {
+        const taskRows = document.querySelectorAll('.task-row');
+        const removeButtons = document.querySelectorAll('.remove-task');
+
+        removeButtons.forEach(btn => {
+            btn.disabled = taskRows.length <= 1;
+        });
+    }
+
+    document.getElementById('addTask').addEventListener('click', function () {
         const taskRow = document.querySelector('.task-row').cloneNode(true);
-        
+
         // Clear input values
         taskRow.querySelectorAll('input[type="text"], input[type="time"]').forEach(input => {
             input.value = '';
         });
-        
-        // Reset selects
+
         taskRow.querySelectorAll('select').forEach(select => {
             select.selectedIndex = 0;
         });
-        
+
+        // Re-attach remove event
+        const removeBtn = taskRow.querySelector('.remove-task');
+        removeBtn.addEventListener('click', () => {
+            taskRow.remove();
+            updateRemoveButtons();
+        });
+
         document.getElementById('taskContainer').appendChild(taskRow);
+        updateRemoveButtons();
     });
+
+    // Attach event to existing remove buttons
+    document.querySelectorAll('.remove-task').forEach(btn => {
+        btn.addEventListener('click', function () {
+            this.closest('.task-row').remove();
+            updateRemoveButtons();
+        });
+    });
+
+    // Initial state
+    updateRemoveButtons();
 </script>
-    <script>
-        function addTask() {
-            const container = document.getElementById('taskInputs');
-            const html = `
-                <div class="mb-3 border rounded p-3">
-                    <input name="task" placeholder="Task" class="form-control mb-2" required>
-                    <select name="category" class="form-control mb-2" required>
-                        <option value="" disabled selected>Choose Category</option>
-                        <option value="Deep Work">Deep Work</option>
-                        <option value="Creative Work">Creative Work</option>
-                        <option value="Planning & Strategy">Planning & Strategy</option>
-                        <option value="Learning & Development">Learning & Development</option>
-                        <option value="Collaboration">Collaboration</option>
-                        <option value="Meetings (1-on-1)">Meetings (1-on-1)</option>
-                        <option value="Team Management">Team Management</option>
-                        <option value="Client Engagement">Client Engagement</option>
-                        <option value="Documentation">Documentation</option>
-                        <option value="Support & Maintenance">Support & Maintenance</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Shallow Work">Shallow Work</option>
-                        <option value="Reflection & Review">Reflection & Review</option>
-                        <option value="Break">Break</option>
-                        <option value="Errands & Admin (Personal)">Errands & Admin (Personal)</option>
-                    </select>
-                    <input name="start_time" type="time" class="form-control mb-2" required>
-                    <input name="end_time" type="time" class="form-control" required>
-                </div>
-            `;
-            container.insertAdjacentHTML('beforeend', html);
-        }
-    </script>
+
+
 
 {% endblock %}
 

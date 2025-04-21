@@ -1,14 +1,14 @@
 {% extends "base.html" %}
-{% block title %}
-<title>AI Productivity - Dashboard</title>
-{% endblock %}
+{% block page %} - Dashboard{% endblock %} 
+{% block page_header %} Dashboard  {% endblock %}
 {% block content %}
-<h1 class="text-center mb-4">{% include 'include/icon.html' %} AI Productivity Dashboard</h1>
-<div class="container mt-5">
+<div class="container py-3">
     <h1 class="mb-4">
         Your Productivity Dashboard
         {% if is_optimised %}
-        <span class="optimised-badge">optimised Schedule</span>
+        <span class="optimised-badge">Optimized Schedule</span>
+        {% elif is_pomodoro %}
+        <span class="optimised-badge" style="background-color: #6f42c1;">Pomodoro Schedule</span>
         {% endif %}
     </h1>
     
@@ -36,26 +36,48 @@
                 </ul>
             </div>
             
-            {% if not is_optimised %}
-            <div class="optimise-btn">
-                <form action="/optimise" method="post" id="optimiseForm">
-                    <!-- Hidden inputs to carry over task data -->
-                    <input type="hidden" name="energy" value="{{ request.form['energy'] }}">
-                    {% for task in request.form.getlist('task') %}
-                        <input type="hidden" name="task" value="{{ task }}">
-                    {% endfor %}
-                    {% for category in request.form.getlist('category') %}
-                        <input type="hidden" name="category" value="{{ category }}">
-                    {% endfor %}
-                    {% for time in request.form.getlist('start_time') %}
-                        <input type="hidden" name="start_time" value="{{ time }}">
-                    {% endfor %}
-                    {% for time in request.form.getlist('end_time') %}
-                        <input type="hidden" name="end_time" value="{{ time }}">
-                    {% endfor %}
-                    
-                    <button type="submit" class="btn btn-success">optimise My Schedule</button>
-                </form>
+            {% if not is_optimised and not is_pomodoro %}
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <form action="/optimise" method="post" id="optimiseForm">
+                        <!-- Hidden inputs to carry over task data -->
+                        <input type="hidden" name="energy" value="{{ request.form['energy'] }}">
+                        {% for task in request.form.getlist('task') %}
+                            <input type="hidden" name="task" value="{{ task }}">
+                        {% endfor %}
+                        {% for category in request.form.getlist('category') %}
+                            <input type="hidden" name="category" value="{{ category }}">
+                        {% endfor %}
+                        {% for time in request.form.getlist('start_time') %}
+                            <input type="hidden" name="start_time" value="{{ time }}">
+                        {% endfor %}
+                        {% for time in request.form.getlist('end_time') %}
+                            <input type="hidden" name="end_time" value="{{ time }}">
+                        {% endfor %}
+                        
+                        <button type="submit" class="btn btn-success w-100">Optimize My Schedule</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form action="{{ url_for('pomodoro_settings') }}" method="post" id="pomodoroForm">
+                        <!-- Hidden inputs to carry over task data -->
+                        <input type="hidden" name="energy" value="{{ request.form['energy'] }}">
+                        {% for task in request.form.getlist('task') %}
+                            <input type="hidden" name="task" value="{{ task }}">
+                        {% endfor %}
+                        {% for category in request.form.getlist('category') %}
+                            <input type="hidden" name="category" value="{{ category }}">
+                        {% endfor %}
+                        {% for time in request.form.getlist('start_time') %}
+                            <input type="hidden" name="start_time" value="{{ time }}">
+                        {% endfor %}
+                        {% for time in request.form.getlist('end_time') %}
+                            <input type="hidden" name="end_time" value="{{ time }}">
+                        {% endfor %}
+                        
+                        <button type="submit" class="btn btn-purple w-100" style="background-color: #6f42c1; color: white;">Apply Pomodoro</button>
+                    </form>
+                </div>
             </div>
             {% endif %}
         </div>
@@ -73,10 +95,119 @@
         <img src="{{ url_for('static', filename='charts/bar_chart.png') }}" alt="Time per Task" class="img-fluid">
     </div>
     
+    {% if batching_recommendations %}
+    <div class="card shadow-sm mt-4 mb-4">
+        <div class="card-header bg-light">
+            <h3 class="mb-0">Task Batching Recommendations</h3>
+        </div>
+        <div class="card-body">
+            <!-- Category batches -->
+            {% if batching_recommendations.category_batches %}
+            <div class="mb-4">
+                <h4><i class="bi bi-collection"></i> Category-Based Batching</h4>
+                <div class="list-group">
+                    {% for batch in batching_recommendations.category_batches %}
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ batch.category }} Tasks ({{ batch.total_duration }} min)</h5>
+                        </div>
+                        <p class="mb-1">{{ batch.recommendation }}</p>
+                        <small class="text-muted">Tasks: {{ batch.tasks|join(', ') }}</small>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Micro tasks -->
+            {% if batching_recommendations.micro_tasks %}
+            <div class="mb-4">
+                <h4><i class="bi bi-lightning-charge"></i> Quick Task Batching</h4>
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Micro-Tasks</h5>
+                        </div>
+                        <p class="mb-1">{{ batching_recommendations.micro_tasks.recommendation }}</p>
+                        <small class="text-muted">Tasks: {{ batching_recommendations.micro_tasks.tasks|join(', ') }}</small>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Context switch reduction -->
+            {% if batching_recommendations.context_switch_reduction %}
+            <div class="mb-4">
+                <h4><i class="bi bi-arrow-left-right"></i> Context Switch Reduction</h4>
+                <div class="list-group">
+                    {% for group in batching_recommendations.context_switch_reduction %}
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ group.primary }} + Related Categories</h5>
+                        </div>
+                        <p class="mb-1">{{ group.recommendation }}</p>
+                        <small class="text-muted">Related categories: {{ group.related|join(', ') }}</small>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Energy-based batching -->
+            <div>
+                <h4><i class="bi bi-battery-charging"></i> Energy-Based Batching</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header bg-danger text-white">High Energy Tasks</div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    {% if batching_recommendations.energy_based_batches.high_energy %}
+                                        {{ batching_recommendations.energy_based_batches.high_energy|join(', ') }}
+                                    {% else %}
+                                        No high energy tasks
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header bg-warning text-dark">Medium Energy Tasks</div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    {% if batching_recommendations.energy_based_batches.medium_energy %}
+                                        {{ batching_recommendations.energy_based_batches.medium_energy|join(', ') }}
+                                    {% else %}
+                                        No medium energy tasks
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header bg-success text-white">Low Energy Tasks</div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    {% if batching_recommendations.energy_based_batches.low_energy %}
+                                        {{ batching_recommendations.energy_based_batches.low_energy|join(', ') }}
+                                    {% else %}
+                                        No low energy tasks
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
     <div class="mt-4 mb-5">
         <a href="/tasks" class="btn btn-primary">Plan Another Day</a>
         <a href="/" class="btn btn-outline-secondary ms-2">Back to Home</a>
     </div>
 </div>
-    
-    {% endblock %}
+{% endblock %}

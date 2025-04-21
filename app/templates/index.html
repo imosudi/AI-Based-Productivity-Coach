@@ -1,13 +1,11 @@
-{% extends "base.html" %}
-{% block title %}
-<title>AI Productivity Coach</title>
-{% endblock %}
 
+{% extends "base.html" %}
+
+{% block page_header %} Coach  {% endblock %}
 {% block content %}
 
-<div class="container py-5">
+<div class="container py-3">
     <div class="text-center mb-5" data-aos="fade-up">
-        <h1 class="display-4 fw-bold">{% include 'include/icon.html' %} AI Productivity Coach</h1>
         <p class="lead">Transform how you manage your time and tasks with intelligence and clarity.</p>
     </div>
 
@@ -16,13 +14,19 @@
             <div class="card shadow-sm h-100">
                 <div class="card-body">
                     <h2 class="card-title">About the Application</h2>
-                    <p class="card-text">
-                        The AI Productivity Coach empowers users with tools to track, analyse, and optimise their daily workflows. 
-                        Designed for professionals and students alike, this tool provides clarity into how your time is spent and where it can be improved.
+                    <p class="card-text text-justify">
+                        The AI Productivity Coach is a smart and intuitive web application designed to help users take control of their time, eliminate distractions, and achieve meaningful progress in both personal and professional tasks. Whether you’re a student juggling assignments or a busy professional managing multiple projects, this tool equips you with deep insights into your productivity patterns.
+                    </p>
+                    <p class="card-text text-justify">
+                        By combining artificial intelligence with proven time management methodologies, the application offers real-time analysis and visual breakdowns of your daily activities. It allows you to log tasks, categorise them, and receive recommendations for smarter scheduling and execution.
+                    </p>
+                    <p class="card-text text-justify">
+                        The app leverages data-driven decision-making to optimise your daily routine, reduce time wastage, and promote work-life balance. With intelligent features like automated task prioritisation, batch scheduling, and Pomodoro timing integration, users can maintain focus, avoid fatigue, and track tangible progress over time.
                     </p>
                 </div>
             </div>
         </div>
+        
 
         <div class="col-md-6" data-aos="fade-left">
             <div class="card shadow-sm h-100">
@@ -33,6 +37,9 @@
                         <li><i class="bi bi-clock text-success"></i> <strong>Time Tracking:</strong> Log time spent on each activity.</li>
                         <li><i class="bi bi-graph-up text-info"></i> <strong>Productivity Insights:</strong> Automated feedback and tips.</li>
                         <li><i class="bi bi-pie-chart text-warning"></i> <strong>Visual Analytics:</strong> Elegant charts and summaries.</li>
+                        <li><i class="bi bi-hourglass-split text-danger"></i> <strong>Pomodoro Technique:</strong> Use focused intervals to maximise productivity.</li>
+                        <li><i class="bi bi-layers text-secondary"></i> <strong>Task Batching:</strong> Intelligent grouping of similar tasks to reduce context-switching.</li>
+                        <li><i class="bi bi-calendar-check text-success"></i> <strong>Optimised Scheduling:</strong> Smart task placement based on workload and time availability.</li>
                     </ul>
                 </div>
             </div>
@@ -76,13 +83,66 @@
                     <p class="card-text">
                         Add tasks, specify categories and durations. Our system tracks and analyses the input,
                         computes performance metrics, and presents results using real-time visual charts.
+                        It also recommends Pomodoro intervals, schedules similar tasks together for cognitive ease,
+                        and adjusts your calendar dynamically based on task priority and estimated time.
                     </p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="text-center g-4  mt-4 mb-5" data-aos="fade-up">
-        <p class="lead">Transform how you manage your time and tasks with intelligence and clarity.</p>
+
+    <div class="row g-4 mt-4">
+        <div class="col-md-12" data-aos="fade-up">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title mb-3">About the Pomodoro Technique</h3>
+                    <p>
+                        The Pomodoro Technique is a proven time management method introduced by Francesco Cirillo. It encourages users to work with the time they have—rather than against it—by breaking work into intervals, usually 25 minutes long, known as “Pomodoros,” followed by short 5-minute breaks. Every fourth interval is followed by a longer break of 15–30 minutes.
+                    </p>
+                    <p>
+                        This technique helps maintain sustained concentration and prevent burnout. It’s ideal for people who struggle with procrastination or constantly feel overwhelmed by their workload. By chunking tasks into manageable time blocks, users stay mentally fresh and gain a tangible sense of progress.
+                    </p>
+                    <p>
+                        The AI Productivity Coach integrates Pomodoro scheduling into your daily agenda, ensuring each session is tracked, and even offers reminders and visual timers to help you stay on course.
+                    </p>
+
+                    <div class="row g-4 mt-2">
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="bi bi-check-circle-fill text-success"></i> Benefits</h5>
+                                    <ul class="mb-0">
+                                        <li>Improves focus and concentration</li>
+                                        <li>Reduces mental fatigue and distractions</li>
+                                        <li>Boosts productivity through intentional work-rest cycles</li>
+                                        <li>Helps combat procrastination and build discipline</li>
+                                        <li>Creates a rhythm that promotes flow and motivation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="bi bi-clock-history text-primary"></i> Implementation Tips</h5>
+                                    <ul class="mb-0">
+                                        <li>Set a timer for 25 minutes – focus on a single task.</li>
+                                        <li>Take a 5-minute break after each Pomodoro.</li>
+                                        <li>After four Pomodoros, take a longer break (15–30 minutes).</li>
+                                        <li>Review completed tasks at the end of the day to identify improvement areas.</li>
+                                        <li>Use visual feedback from the app to adjust future intervals and task batches.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center g-4 mt-5 mb-5" data-aos="fade-up">
         <a href="{{ url_for('tasks') }}" class="btn btn-primary btn-lg mt-3">Get Started</a>
     </div>
 </div>
