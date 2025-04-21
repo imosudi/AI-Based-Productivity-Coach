@@ -1,7 +1,7 @@
 # AI-Based Productivity Coach
-
+<div align="justify">
 This web-based productivity dashboard is designed to help individuals, students, and professionals organise their tasks, manage their time, and track their daily activities with enhanced efficiency. Built using Flask, HTML, CSS, and JavaScript, the application integrates smart scheduling tools and visual progress indicators to provide users with an intuitive and interactive experience. It supports dynamic task updates, categorisation, and daily summaries, empowering users to prioritise their goals and stay focused. By incorporating productivity techniques like the Pomodoro method and intelligent task batching, the application fosters a well-structured approach to time management. Whether you're working on personal goals or managing multiple professional commitments, this dashboard is tailored to improve productivity, ensure optimal use of time, and support a balanced workflow.
-
+</div>
 
 ## Table of Contents
 - [Features](#features)
@@ -170,5 +170,6 @@ Contributions are welcome! To contribute:
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## About Pomodoro Technique
-
+<div align="justify">
 The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. It uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks of around 5 minutes. After completing four such intervals (called "Pomodoros"), a longer break of 15 to 30 minutes is taken. This technique aims to improve focus, minimise mental fatigue, and increase sustained productivity. By working with the natural rhythm of concentration and rest, the Pomodoro Technique helps individuals maintain consistent energy levels and reduce procrastination. The technique is especially effective in environments with high cognitive load, where maintaining attention and discipline is key. It encourages goal setting, frequent review, and the ability to estimate effort more accurately over time, contributing to both short-term task completion and long-term productivity habits.
+</div>
