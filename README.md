@@ -1,4 +1,5 @@
 # 🧠  AI-Based Productivity Coach
+![alt text](app/static/assets/images/logo.png)
 A dynamic, intelligent task and time management tool designed to optimise productivity using real-time analytics, visual progress feedback, and cognitive-friendly scheduling.
 
 
