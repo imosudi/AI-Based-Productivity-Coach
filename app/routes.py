@@ -6,18 +6,9 @@ from flask import redirect,url_for,render_template,request
 from app.logic import (
     CATEGORY_TYPE_MAP, 
     ChartsManipulations,
-    #compute_productivity_stats, 
-    #generate_charts,
-    #generate_daily_schedule_with_pomodoro, 
     podomoroTechnique,
-    #generate_schedule,
-    #generate_task_batching_recommendations,
     batchRecommendation,
-    #generate_time_blocked_schedule,
     taskManipulations,
-    #optimise_task_schedule,
-    #read_data, 
-    #read_data_csv
 )
 
 from . import app, dir_path
@@ -93,7 +84,6 @@ def optimise():
     return render_template('dashboard.html', stats=stats, is_optimised=True)
 
 
-# Add to routes.py
 
 @app.route('/pomodoro', methods=['POST'])
 def pomodoro_schedule():
@@ -140,7 +130,6 @@ def pomodoro_schedule():
         batching_recommendations=batching_recommendations
     )
 
-# Add to routes.py
 
 @app.route('/pomodoro_settings', methods=['POST'])
 def pomodoro_settings():
