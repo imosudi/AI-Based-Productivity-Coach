@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 
 import os
 from datetime import timedelta, datetime
-
 from . import dir_path
 
 # Define how each category maps to a broader type
@@ -121,9 +120,7 @@ def generate_charts(df):
     plt.close()
 
 
-# Add to logic.py
 
-from datetime import datetime, timedelta
 
 def calculate_task_priority(task_name, category, duration, energy_level):
     """
@@ -325,8 +322,6 @@ def generate_time_blocked_schedule(tasks, categories, start_times, end_times, en
     return time_blocks
 
 
-# Add to logic.py
-
 def apply_pomodoro_technique(tasks, categories, durations, start_time, end_time, pomodoro_settings):
     """
     Apply Pomodoro technique to a task schedule.
@@ -497,7 +492,6 @@ def generate_daily_schedule_with_pomodoro(tasks, categories, start_times, end_ti
     
     return schedule
 
-# Add to logic.py
 
 def generate_task_batching_recommendations(tasks, categories, durations):
     """
