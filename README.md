@@ -4,9 +4,9 @@
 ## 💡 About Smart Productivity Dashboard
 Smart Productivity Dashboard is a dynamic and intelligent task and time management tool built to optimise your productivity through:
 
-📊 Real-time analytics
-📈 Visual progress feedback
-🧠 Cognitive-friendly scheduling techniques
+- 📊 Real-time analytics
+- 📈 Visual progress feedback
+- 🧠 Cognitive-friendly scheduling techniques
 
 At its core, this system is a classical implementation of a rule-based expert system, leveraging structured logic and domain-specific heuristics to make tailored productivity recommendations.
 
